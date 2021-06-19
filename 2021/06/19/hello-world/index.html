@@ -434,8 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Jvav/">
-                                <span class="chip bg-color">Jvav</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                             <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
@@ -481,14 +481,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.7k
+                    4.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
 
@@ -517,6 +517,7 @@
 <h2 id="二、通用设计原则"><a href="#二、通用设计原则" class="headerlink" title="二、通用设计原则"></a>二、通用设计原则</h2><h3 id="1-KISS"><a href="#1-KISS" class="headerlink" title="1. KISS"></a>1. KISS</h3><p>所谓KISS原则，即：Keep It Simple,Stupid，指<strong>设计时要坚持简约原则，避免不必要的复杂化，并且易于修改</strong>。</p>
 <table><tbody><tr><td bgcolor="lightblue"><font color="black">Everything should be made as simple as possible, but not simpler. - Albert Einstein</font></td></tr></tbody></table>
 
+
 <p>简单清晰、功能强大是软件设计最重要的原则和目标。但是软件工程天然错综复杂，而“简单”却没有一个衡量标准，判断和实现一个东西是不是简单，可以通过以下方式来参考。</p>
 <ul>
 <li>让别的软件工程师以一种最容易的方式使用你的方案。</li>
@@ -527,21 +528,23 @@
 <table><tbody><tr><td bgcolor="lightblue"><font color="black">**我的理解**：保持简单但不能掩盖软件丰富的内涵。即**简约而不简单**！简约是对复杂的事物抽丝剥茧、去除细枝末节显露主要逻辑的过程。就像小时候老师教写文章，要求尽可能用朴实的语言，言简意赅的写出来，但却又要避免语言过于贫乏。软件的“抽象”和它的“直观性”，其实是一对矛盾的关系，软件设计就要保证这两者的平衡。代码抽象过于复杂会陷入“过度设计”不易理解的困境；为了“直观性”缺乏抽象，长此以往又会出现大量的重复、不易于扩展和难维护的困境。</font></td></tr></tbody></table>
 
 
-<h3 id="2-DRY"><a href="#2-DRY" class="headerlink" title="2. DRY"></a>2. DRY</h3><p>所谓DRY原则，即：Don’t Repeat Yourself，不要让自己重复。</p>
-<p>重复代码是软件程序变烂的万恶之首。DRY并不是指你不能复制代码，而是你复制的代码不能包含重复的“信息”。复制的东西并不仅仅是复制了代码，而是由于你把同一个信息散播在了代码的各个部分导致了有很多相近的代码也散播在各个地方。代码之所以要写的好，不要重复某些“信息”，因为需求人员总是要改需求，不改代码你就要“死”，改代码你就要加班，所以为了减少修改代码的痛苦，我们不能重复任何信息。举个例子，有一天需求人员说，要把分隔符从分号改成顿号！一下子就要改多个地方了。</p>
-<p>所以，去掉重复的信息会让你的代码结构发生本质的变化。</p>
+<h3 id="2-DRY"><a href="#2-DRY" class="headerlink" title="2. DRY"></a>2. DRY</h3><p>所谓DRY原则，即：Don’t Repeat Yourself，<strong>不要让自己重复</strong>。</p>
+<p><strong>重复代码是软件程序变烂的万恶之首</strong>。DRY并不是指你不能复制代码，而是你复制的代码不能包含重复的“信息”。复制的东西并不仅仅是复制了代码，而是由于你把同一个信息散播在了代码的各个部分导致了有很多相近的代码也散播在各个地方。代码之所以要写的好，不要重复某些“信息”，因为需求人员总是要改需求，不改代码你就要“死”，改代码你就要加班，所以为了减少修改代码的痛苦，我们不能重复任何信息。举个例子，有一天需求人员说，要把分隔符从分号改成顿号！一下子就要改多个地方了。</p>
+<p>所以，<strong>去掉重复的信息会让你的代码结构发生本质的变化</strong>。</p>
 <p>“重复代码”有很多变体：</p>
 <ul>
 <li>魔法数字、魔法字符串等</li>
 <li>相同代码块</li>
 <li>相似的代码逻辑及操作</li>
 </ul>
-<p>对于消除重复的代码有事不过三法则。</p>
+<p>对于消除重复的代码有<strong>事不过三法则</strong>。</p>
 <ul>
 <li>第一次先写了一段代码。</li>
 <li>第二次在另一个地方写了一段相同或相似逻辑的代码，你已经有消除和提取重复代码的冲动了。</li>
 <li>再次在另一个地方写了同样的代码，你已忍无可忍，现在可以考虑抽取和消除重复代码了。</li>
 </ul>
+<table><tbody><tr><td bgcolor="lightblue"><font color="black">我的理解：解决重复的最佳的方式是通过培养良好的编码习惯来避免重复，通过重构的手段来消除重复。发现和解决重复并不困难，通过提取抽象、提取方法等措施就能消除重复，但困难的是立即行动去解决重复，从而不断的磨砺和提升自己的编程技艺，不断将私人代码变成公共代码，这才是自我提升的过程。解决了重复，经过一段时间，你就会发现，你对整个系统的理解程度在不知不觉中提高了不少。</font></td></tr></tbody></table>
+
 <h3 id="3-Maximize-Cohesion，-Minimize-Coupling"><a href="#3-Maximize-Cohesion，-Minimize-Coupling" class="headerlink" title="3. Maximize Cohesion， Minimize Coupling"></a>3. Maximize Cohesion， Minimize Coupling</h3><p>所谓Maximize Cohesion,Minimize Coupling原则，即：<strong>高内聚低耦合</strong>。这是判断设计好坏的标准，主要是看<strong>模块内的内聚性是否高，模块间的耦合度是否低</strong>。</p>
 <ul>
 <li><strong>耦合性</strong>：也称块间联系。指软件系统结构中各模块间相互联系紧密程度的一种度量。模块之间联系越紧密，其耦合性就越强，模块的独立性则越差。模块间耦合高低取决于模块间接口的复杂性、调用的方式及传递的信息。耦合是软件结构中各模块之间相互连接的一种度量，耦合强弱取决于模块间接口的复杂程度、进入或访问一个模块的点以及通过接口的数据。</li>
@@ -567,6 +570,9 @@
 <li>Controller是用来控制和处理输入输出的，是处理用户交互的部分，也负责向模型（Model层）发送数据。</li>
 </ul>
 <p>MVC的这个设计各个关注点是分开的，这样有助于我们管理和开发复杂的应用程序，我们可以在某个时间点只集中精力在其中的某一个关注点，而不是所有的部分。</p>
+<table><tbody><tr><td bgcolor="lightblue"><font color="black">好的架构必须使每个关注点相互分离，也就是说系统中的一个部分发生了变化，不会影响其他部分。即使需要改变，也能够清晰地识别出那些部分需要改变。如果需要扩展架构，影响将会最小化，已经可以工作的每个部分都将继续工作。——Ivar Jacobson(《AOSD中文版》)</font></td></tr></tbody></table>
+
+
 <h3 id="分离方式"><a href="#分离方式" class="headerlink" title="分离方式"></a>分离方式</h3><p>下面将介绍一些分层的思想和方式:</p>
 <ul>
 <li><strong>纵向分离</strong>: 如常见的三层架构（逻辑控制层、业务处理层和数据持久化层）。</li>
@@ -578,18 +584,23 @@
 <li><strong>扩展分离</strong>: 如果基于某种设计，原先不具有某些行为需要增加，可以考虑通过扩展或插件的形式来完成，将这些功能放入到插件或扩展中。</li>
 <li><strong>反转分离</strong>: 很多依赖注入的框架，如Spring、Guice等等，这些帮助我们做依赖反转，从而倒置依赖关系</li>
 </ul>
-<h3 id="5-YAGNI"><a href="#5-YAGNI" class="headerlink" title="5. YAGNI"></a>5. YAGNI</h3><p>所谓YAGNI原则，即：You Ain’t Gonna Need It，你不需要它。它是一种极限编程（XP）实践，表示程序员不应为目前还不需要的功能编写代码。YAGNI很像KISS原则，因为它也是致力于构建简单的方案。然而，KISS是通过尽可能容易的完成某件事情来实现精简方案；但YAGNI是通过根本就不实现它来达到精简。YAGNI的观点是你应该为了眼前的需求做设计而不是未来。</p>
-<p>只在真正需要某些功能的时候才去实现它，而不是仅仅因为你预见到它将出现。- XP的联合创始人Ron Jeffries</p>
+<h3 id="5-YAGNI"><a href="#5-YAGNI" class="headerlink" title="5. YAGNI"></a>5. YAGNI</h3><p>所谓YAGNI原则，即：You Ain’t Gonna Need It，<strong>你不需要它</strong>。它是一种极限编程（XP）实践，表示程序员不应为目前还不需要的功能编写代码。YAGNI很像KISS原则，因为它也是致力于构建简单的方案。然而，KISS是通过尽可能容易的完成某件事情来实现精简方案；但YAGNI是通过根本就不实现它来达到精简。YAGNI的观点是你应该<strong>为了眼前的需求做设计而不是未来</strong>。</p>
+<table><tbody><tr><td bgcolor="lightblue"><font color="black">只在真正需要某些功能的时候才去实现它，而不是仅仅因为你预见到它将出现。- XP的联合创始人Ron Jeffries</font></td></tr></tbody></table>
+
+
 <p>即使你非常确信将来你需要某个特性，也不要现在就去实现它。在很多情况下，你会发现或许最终你不需要它了，或者是你真正所需的特性与你之前预计的有很大的出入。遵循 YAGNI 实践有两个主要原因：</p>
 <ul>
 <li>你节约了时间，因为你避免了编写最终证明不必要的代码。</li>
 <li>你的代码质量更高了，因为你使代码不必为你的“推测”所污染，而这些“推测”最终可能或多或少有些错误，但此时这些错误已牢牢地依附在你的代码中了。</li>
 </ul>
-<p><strong>我的理解</strong>：YAGNI 原则，本质上是告诫我们<strong>写代码不要画蛇添足，否则就会弄巧成拙了</strong>。编写业务代码时，不要去假想一些需求或者场景，因为大多数你所设想的场景都不会发生，而你所多写的那些代码也将会长期滞留在你的系统中，收效甚微，但却让你和团队花费了更多的时间和精力去书写和维护，更可怕的是可能会对将来新的代码维护人造成困惑。另外对于没有被使用到的代码，我认为也都应该立即删除，从而保持系统的精简，如果将来需要时再去书写或恢复，而且那时侯写出的代码也绝对比之前的更为契合。</p>
+<table><tbody><tr><td bgcolor="lightblue"><font color="black">**我的理解**：YAGNI 原则，本质上是告诫我们**写代码不要画蛇添足，否则就会弄巧成拙了**。编写业务代码时，不要去假想一些需求或者场景，因为大多数你所设想的场景都不会发生，而你所多写的那些代码也将会长期滞留在你的系统中，收效甚微，但却让你和团队花费了更多的时间和精力去书写和维护，更可怕的是可能会对将来新的代码维护人造成困惑。另外对于没有被使用到的代码，我认为也都应该立即删除，从而保持系统的精简，如果将来需要时再去书写或恢复，而且那时侯写出的代码也绝对比之前的更为契合。</font></td></tr></tbody></table>
+
 <h3 id="6-Boy-Scout-Rule"><a href="#6-Boy-Scout-Rule" class="headerlink" title="6. Boy-Scout Rule"></a>6. Boy-Scout Rule</h3><p>Boy-Scout Rule，译为：<strong>童子军规则</strong>。美国童子军有一个简单的规则：“让营地比你刚来时更干净(Always leave the campground cleaner than you found it)”。如果看到地上有垃圾，不管是谁扔的，都要清理。这样你就有意地为下一批来宿营的人改善了环境。</p>
 <p>童子军规则告诉我们在对现有代码库进行更改时，代码质量往往会降低，从而积累技术债务。所以需要始终保持代码整洁。不管原作者是谁，如果我们努力去改进代码模块，不管是多么小的改进，我们的软件系统就再也不会持续变坏了。取而代之的是，系统在发展的同时会逐渐变得更好。我们也会看到团队们关心整体的系统，而不是各自只关心自己负责的一小部分。而且团队成员要互助，互相清理代码，他们遵从童子军规则，因为那对每个人都很好，而不仅仅是对自己好。</p>
-<p>关于童子军规则中所提倡的对代码坏味道的尽早修复，我也想起来了我们所熟知的“破窗效应”和“讳疾忌医”的典故：</p>
-<h3 id="破窗效应"><a href="#破窗效应" class="headerlink" title="破窗效应"></a>破窗效应</h3><p>如果有人打坏了一幢建筑物的窗户玻璃，而这扇窗户又得不到及时的维修，别人就可能受到某些示范性的纵容去打烂更多的窗户。久而久之，这些破窗户就给人造成一种无序的感觉，结果在这种公众麻木不仁的氛围中，犯罪就会滋生、猖獗。——政治学家威尔逊和犯罪学家凯琳提出的“破窗效应”理论</p>
+<p>关于童子军规则中所提倡的<strong>对代码坏味道的尽早修复</strong>，我也想起来了我们所熟知的<strong>“破窗效应</strong>”和<strong>“讳疾忌医”</strong>的典故：</p>
+<h3 id="破窗效应"><a href="#破窗效应" class="headerlink" title="破窗效应"></a>破窗效应</h3><table><tbody><tr><td bgcolor="lightblue"><font color="black">如果有人打坏了一幢建筑物的窗户玻璃，而这扇窗户又得不到及时的维修，别人就可能受到某些示范性的纵容去打烂更多的窗户。久而久之，这些破窗户就给人造成一种无序的感觉，结果在这种公众麻木不仁的氛围中，犯罪就会滋生、猖獗。——政治学家威尔逊和犯罪学家凯琳提出的“破窗效应”理论</font></td></tr></tbody></table>
+
+
 <ul>
 <li>“环境早就脏了，我扔的这点儿垃圾根本起不到关键性作用。”</li>
 <li>“这个代码以前的其他人也都是这样写的。”</li>
@@ -598,7 +609,8 @@
 <p>不少人会像上面这样辩解自己的过错。其实，这些说法根本站不住脚，错了就是错了，影响的大小并不能改变行为错误的本质，别人的错误更不会是证明你无错的理由。任何一种不良现象的存在，都有可能传递一种错误信息。进而导致更坏的后果，正所谓“<strong>千里之堤，溃于蚁穴”、勿以善小而不为，勿以恶小而为之</strong>。</p>
 <h3 id="讳疾忌医的典故"><a href="#讳疾忌医的典故" class="headerlink" title="讳疾忌医的典故"></a>讳疾忌医的典故</h3><p>《扁鹊见蔡桓公》的故事，我们从小就学习了，告诉我们不能盲目相信自己，不能讳疾忌医。但想想我们自己代码的坏味道和bug，也是如出一辙。</p>
 <p>代码坏味道或者糟糕的程序代码就像隐形的“疾病”一样潜伏在项目中，也因此形成了技术债务。如果这些“疾病”在项目初期不引起注关注、不把疾病扼杀在萌芽之中，那么后期修复它的代价也就越大，也必然会使得项目的软件程序越来越难以维护，这个项目也最终会像蔡桓公一样无药可治、“无奈何也”。</p>
-<p>所以，请记住童子军规则对我们的启示：<strong>始终保持代码整洁，勿以善小而不为，勿以恶小而为之，有病早治</strong>。</p>
+<table><tbody><tr><td bgcolor="lightblue"><font color="black">所以，请记住童子军规则对我们的启示：**始终保持代码整洁，勿以善小而不为，勿以恶小而为之，有病早治**。</font></td></tr></tbody></table>
+
 <h3 id="其他原则："><a href="#其他原则：" class="headerlink" title="其他原则："></a>其他原则：</h3><ul>
 <li>避免过早优化（Avoid Premature Optimization）: 除非你的代码运行的比你想像中的要慢，否则别去优化。假如你真的想优化，就必须先想好如何用数据证明，它的速度变快了。“过早的优化是一切罪恶之源。”——Donald Knuth</li>
 <li>最小惊讶原则(Principle of least astonishment): 代码应该尽可能减少让读者惊喜。也就是说，你编写的代码只需按照项目的要求来编写。其他华丽的功能就不必了，以免弄巧成拙。</li>
@@ -609,7 +621,7 @@
 <li>做最简单的事儿就让代码可运行（Do the simplest thing that could possibly work）: 尽可能做最简单的事就可以让代码可运行。在编程中，一定要保持简单原则。作为一名程序员不断的反思“如何在工作中做到简化呢？”这将有助于在设计中保持简单的路径。</li>
 <li>隐藏实现细节（Hide Implementation Details）: 软件模块通过提供接口隐藏信息（即实现细节），而不泄漏任何不必要的信息。</li>
 <li>科里定律(Curly’s Law): 是为任何特定的代码选择一个明确定义的目标：只做一件事。</li>
-<li>墨菲定律（Murphy’s Law）:根本内容是：如果事情有变坏的可能，不管这种可能性有多小，它总会发生。主要内容如下：<br>&nbsp;&nbsp;+ 任何事都没有表面看起来那么简单；<br>&nbsp;&nbsp;+ 所有的事都会比你预计的时间长；<br>&nbsp;&nbsp;+ 会出错的事总会出错；<br>&nbsp;&nbsp;+ 如果你担心某种情况发生，那么它就更有可能发生。</li>
+<li>墨菲定律（Murphy’s Law）:根本内容是：如果事情有变坏的可能，不管这种可能性有多小，它总会发生。主要内容如下：<br>&nbsp;&nbsp; - 任何事都没有表面看起来那么简单；<br>&nbsp;&nbsp; - 所有的事都会比你预计的时间长；<br>&nbsp;&nbsp; - 会出错的事总会出错；<br>&nbsp;&nbsp; - 如果你担心某种情况发生，那么它就更有可能发生。</li>
 </ul>
 
                 
@@ -675,8 +687,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Jvav/">
-                                    <span class="chip bg-color">Jvav</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                                 <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
@@ -894,8 +906,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Jvav/">
-                        <span class="chip bg-color">Jvav</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                     <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
@@ -952,8 +964,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Jvav/">
-                        <span class="chip bg-color">Jvav</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                     <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
