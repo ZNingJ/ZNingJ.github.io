@@ -6,7 +6,7 @@
   <link href="https://zningj.github.io/atom.xml" rel="self"/>
   
   <link href="https://zningj.github.io/"/>
-  <updated>2021-06-21T13:08:44.613Z</updated>
+  <updated>2021-06-21T14:27:46.203Z</updated>
   <id>https://zningj.github.io/</id>
   
   <author>
@@ -17,40 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>tupian</title>
-    <link href="https://zningj.github.io/2021/06/21/tupian/"/>
-    <id>https://zningj.github.io/2021/06/21/tupian/</id>
-    <published>2021-06-21T12:55:19.000Z</published>
-    <updated>2021-06-21T13:08:44.613Z</updated>
+    <title>计算机网络知识点整理（二）</title>
+    <link href="https://zningj.github.io/2020/12/22/ji-suan-ji-wang-luo-zhi-shi-dian-zheng-li-er/"/>
+    <id>https://zningj.github.io/2020/12/22/ji-suan-ji-wang-luo-zhi-shi-dian-zheng-li-er/</id>
+    <published>2020-12-22T12:55:19.000Z</published>
+    <updated>2021-06-21T14:27:46.203Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;img</summary>
+    <summary type="html">&lt;p&gt;&lt;b&gt;&lt;span style=&quot;color:#FF4500;&quot;&gt;写在最前面：本文章所有内容是本人从网络以及《计算机网路第七版》整理而得，若有错误请联系我。&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;span</summary>
         
       
     
     
     
+    <category term="计算机网络" scheme="https://zningj.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="计算机" scheme="https://zningj.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    <category term="计算机网络" scheme="https://zningj.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="面试题" scheme="https://zningj.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
   <entry>
     <title>计算机网络知识点整理（一）</title>
-    <link href="https://zningj.github.io/2021/06/21/ji-suan-ji-wang-luo-zhi-shi-dian-zheng-li-yi/"/>
-    <id>https://zningj.github.io/2021/06/21/ji-suan-ji-wang-luo-zhi-shi-dian-zheng-li-yi/</id>
-    <published>2021-06-21T11:39:37.000Z</published>
-    <updated>2021-06-21T12:52:46.453Z</updated>
+    <link href="https://zningj.github.io/2020/12/21/ji-suan-ji-wang-luo-zhi-shi-dian-zheng-li-yi/"/>
+    <id>https://zningj.github.io/2020/12/21/ji-suan-ji-wang-luo-zhi-shi-dian-zheng-li-yi/</id>
+    <published>2020-12-21T11:39:37.000Z</published>
+    <updated>2021-06-21T14:20:28.156Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/.io//1.jpg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
-&lt;img src=&quot;/.io//06/21/ji-suan-ji-wang-luo-zhi-shi-dian-zheng-li-yi/1.jpg&quot; class=&quot;&quot;</summary>
+    <summary type="html">&lt;p&gt;&lt;b&gt;&lt;span style=&quot;color:#FF4500;&quot;&gt;写在最前面：本文章所有内容是本人从网络以及《计算机网路第七版》整理而得，若有错误请联系我。&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;span</summary>
         
       
     
@@ -69,10 +78,10 @@
   
   <entry>
     <title>软件程序设计原则（三）</title>
-    <link href="https://zningj.github.io/2021/01/20/ruan-jian-she-ji-yuan-ze/"/>
-    <id>https://zningj.github.io/2021/01/20/ruan-jian-she-ji-yuan-ze/</id>
-    <published>2021-01-19T16:00:00.000Z</published>
-    <updated>2021-06-20T15:54:27.000Z</updated>
+    <link href="https://zningj.github.io/2020/08/20/ruan-jian-she-ji-yuan-ze-san/"/>
+    <id>https://zningj.github.io/2020/08/20/ruan-jian-she-ji-yuan-ze-san/</id>
+    <published>2020-08-19T16:00:00.000Z</published>
+    <updated>2021-06-21T14:26:30.433Z</updated>
     
     
       
@@ -97,11 +106,11 @@
   </entry>
   
   <entry>
-    <title>程序设计原则（二）</title>
-    <link href="https://zningj.github.io/2020/12/10/test2/"/>
-    <id>https://zningj.github.io/2020/12/10/test2/</id>
-    <published>2020-12-09T16:00:00.000Z</published>
-    <updated>2021-06-19T16:22:22.799Z</updated>
+    <title>软件程序设计原则（二）</title>
+    <link href="https://zningj.github.io/2020/08/17/ruan-jian-she-ji-yuan-ze-er/"/>
+    <id>https://zningj.github.io/2020/08/17/ruan-jian-she-ji-yuan-ze-er/</id>
+    <published>2020-08-16T16:00:00.000Z</published>
+    <updated>2021-06-21T14:26:14.500Z</updated>
     
     
       
@@ -126,11 +135,11 @@
   </entry>
   
   <entry>
-    <title>软件程序设计原则</title>
-    <link href="https://zningj.github.io/2020/06/19/hello-world/"/>
-    <id>https://zningj.github.io/2020/06/19/hello-world/</id>
-    <published>2020-06-18T16:00:00.000Z</published>
-    <updated>2021-06-19T16:19:52.006Z</updated>
+    <title>软件程序设计原则（一）</title>
+    <link href="https://zningj.github.io/2020/08/13/ruan-jian-she-ji-yuan-ze-yi/"/>
+    <id>https://zningj.github.io/2020/08/13/ruan-jian-she-ji-yuan-ze-yi/</id>
+    <published>2020-08-12T16:00:00.000Z</published>
+    <updated>2021-06-21T14:25:59.115Z</updated>
     
     
       
