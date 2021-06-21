@@ -6,7 +6,7 @@
   <link href="https://zningj.github.io/atom.xml" rel="self"/>
   
   <link href="https://zningj.github.io/"/>
-  <updated>2021-06-21T14:38:39.203Z</updated>
+  <updated>2021-06-21T14:47:41.987Z</updated>
   <id>https://zningj.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据库知识点</title>
+    <link href="https://zningj.github.io/2021/01/20/shu-ju-ku-zhi-shi-dian/"/>
+    <id>https://zningj.github.io/2021/01/20/shu-ju-ku-zhi-shi-dian/</id>
+    <published>2021-01-20T14:41:49.000Z</published>
+    <updated>2021-06-21T14:47:41.987Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、基本概念&quot;&gt;&lt;a href=&quot;#一、基本概念&quot; class=&quot;headerlink&quot; title=&quot;一、基本概念&quot;&gt;&lt;/a&gt;一、基本概念&lt;/h2&gt;&lt;h4 id=&quot;1-主键、外键、超键、候选键&quot;&gt;&lt;a href=&quot;#1-主键、外键、超键、候选键&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="数据库" scheme="https://zningj.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+    <category term="计算机" scheme="https://zningj.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    <category term="面试题" scheme="https://zningj.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    <category term="数据库" scheme="https://zningj.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>计算机网络知识点整理（二）</title>
