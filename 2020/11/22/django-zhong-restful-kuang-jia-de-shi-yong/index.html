@@ -541,7 +541,7 @@
 <li>创建加载数据的view和url</li>
 </ol>
 <hr>
-<h5 id="1-创建Django项目"><a href="#1-创建Django项目" class="headerlink" title="1.创建Django项目"></a>1.创建Django项目</h5><p>创建django_rest</p>
+<h3 id="1-创建Django项目"><a href="#1-创建Django项目" class="headerlink" title="1.创建Django项目"></a>1.创建Django项目</h3><p>创建django_rest</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">django-admin startproject django_rest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>进入django_rest，创建虚拟环境env</p>
@@ -579,7 +579,7 @@ Password (again):
 Superuser created successfully.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
-<h5 id="2-创建ORM模型"><a href="#2-创建ORM模型" class="headerlink" title="2.创建ORM模型"></a>2.创建ORM模型</h5><p>数据库我们使用默认sqlite3 即可，如需要变更可在setting.py中databases配置。</p>
+<h3 id="2-创建ORM模型"><a href="#2-创建ORM模型" class="headerlink" title="2.创建ORM模型"></a>2.创建ORM模型</h3><p>数据库我们使用默认sqlite3 即可，如需要变更可在setting.py中databases配置。</p>
 <p>修改我们/django_rest/models.py添加我们<code>man</code>的模型</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#models.py</span>
 
@@ -618,7 +618,7 @@ admin<span class="token punctuation">.</span>site<span class="token punctuation"
 <p>我们添加一个那个男人lgd.ame</p>
 <p><img src="https://markdown-1257692304.cos.ap-nanjing.myqcloud.com/markdown_img/image-20210621163158979.png" alt="image-20210621163158979"></p>
 <hr>
-<h5 id="3-加载Django-REST-Framework"><a href="#3-加载Django-REST-Framework" class="headerlink" title="3. 加载Django REST Framework"></a>3. 加载Django REST Framework</h5><p>安装工具包</p>
+<h3 id="3-加载Django-REST-Framework"><a href="#3-加载Django-REST-Framework" class="headerlink" title="3. 加载Django REST Framework"></a>3. 加载Django REST Framework</h3><p>安装工具包</p>
 <pre class="line-numbers language-none"><code class="language-none">pip install djangorestframework<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>注册rest_framework</p>
@@ -634,7 +634,7 @@ INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuat
     <span class="token string">'rest_framework'</span> <span class="token comment">#注册</span>
 <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h5 id="4-序列化模型"><a href="#4-序列化模型" class="headerlink" title="4.序列化模型"></a>4.序列化模型</h5><p>序列化器会把我们的模型数据转化（序列化）为json格式，这样就能够被请求了。同样当有josn数据提交过来的时候，序列化器会将json数据转换为模型供咋们使用。</p>
+<h3 id="4-序列化模型"><a href="#4-序列化模型" class="headerlink" title="4.序列化模型"></a>4.序列化模型</h3><p>序列化器会把我们的模型数据转化（序列化）为json格式，这样就能够被请求了。同样当有josn数据提交过来的时候，序列化器会将json数据转换为模型供咋们使用。</p>
 <p>我们在rest_app下创建文件serializer.py</p>
 <p>我们要做三件事：</p>
 <ol>
@@ -651,7 +651,7 @@ INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuat
         model <span class="token operator">=</span> Man
         fields <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'sex'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h5 id="5-创建加载数据的view和url"><a href="#5-创建加载数据的view和url" class="headerlink" title="5.创建加载数据的view和url"></a>5.创建加载数据的view和url</h5><p>我们需要把序列化后的数据返回给浏览器，所以要做一下步骤：</p>
+<h3 id="5-创建加载数据的view和url"><a href="#5-创建加载数据的view和url" class="headerlink" title="5.创建加载数据的view和url"></a>5.创建加载数据的view和url</h3><p>我们需要把序列化后的数据返回给浏览器，所以要做一下步骤：</p>
 <ol>
 <li>通过Man查询数据库</li>
 <li>将查询后的数据传递给序列化器，通过序列化器转化为json</li>
