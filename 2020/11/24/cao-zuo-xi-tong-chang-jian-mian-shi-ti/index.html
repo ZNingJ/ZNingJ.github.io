@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="操作系统常见面试题, HTML,CSS,JavaScript,JQuery,React,Vue.js等">
+    <meta name="keywords" content="操作系统常见问题, HTML,CSS,JavaScript,JQuery,React,Vue.js等">
     <meta name="description" content="西安交通大学 | 电信学部 | 软件工程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>操作系统常见面试题 | 不吃香菜的博客</title>
+    <title>操作系统常见问题 | 不吃香菜的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -335,12 +335,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">操作系统常见面试题</h1>
+                    <h1 class="description center-align post-title">操作系统常见问题</h1>
                 </div>
             </div>
         </div>
@@ -608,7 +608,7 @@
 <li><strong>内核级线程(kernel level thread)<strong>：对于这类线程，有关线程管理的所有工作由内核完成，应用程序没有进行线程管理的代码，只能调用内核线程的接口。内核维护进程及其内部的每个线程，调度也由内核基于线程架构完成。内核级线程的好处是，</strong>内核可以将不同线程更好地分配到不同的CPU，以实现真正的并行计算。</strong></li>
 </ul>
 <p><strong>事实上，在现代操作系统中，往往使用组合方式实现多线程，即线程创建完全在用户空间中完成，并且一个应用程序中的多个用户级线程被映射到一些内核级线程上，相当于是一种折中方案。</strong></p>
-<h3 id="6-进程调度"><a href="#6-进程调度" class="headerlink" title="** **6.进程调度"></a>** **6.进程调度</h3><p><strong>调度种类</strong></p>
+<h3 id="6-进程调度"><a href="#6-进程调度" class="headerlink" title="6.进程调度"></a>6.进程调度</h3><p><strong>调度种类</strong></p>
 <ul>
 <li><strong>高级调度</strong>：(High-Level Scheduling)又称为作业调度，它决定把后备作业调入内存运行；</li>
 <li><strong>低级调度</strong>：(Low-Level Scheduling)又称为进程调度，它决定把就绪队列的某进程获得CPU；</li>
@@ -815,7 +815,7 @@
 <p>   所谓<strong>同步</strong>，是指散步在不同进程之间的若干程序片断，它们的运行必须严格按照规定的某种先后次序来运行，这种先后次序依赖于要完成的特定的任务。如果<strong>用对资源的访问来定义的话，同步是指在互斥的基础上（大多数情况），通过其它机制实现访问者对资源的有序访问。在大多数情况下，同步已经实现了互斥，特别是所有写入资源的情况必定是互斥的。少数情况是指可以允许多个访问者同时访问资源。</strong></p>
 <p>   所谓<strong>互斥</strong>，是指散布在不同进程之间的若干程序片断，当某个进程运行其中一个程序片段时，其它进程就不能运行它们之中的任一程序片段，只能等到该进程运行完这个程序片段后才可以运行。如果<strong>用对资源的访问来定义的话，互斥某一资源同时只允许一个访问者对其进行访问，具有唯一性和排它性。但互斥无法限制访问者对资源的访问顺序，即访问是无序的。</strong></p>
 <h3 id="19-什么是线程安全"><a href="#19-什么是线程安全" class="headerlink" title="19.什么是线程安全"></a>19.什么是线程安全</h3><p>如果多线程的程序运行结果是可预期的，而且与单线程的程序运行结果一样，那么说明是“线程安全”的。</p>
-<h3 id="20-同步与异步"><a href="#20-同步与异步" class="headerlink" title="20.同步与异步"></a>20.同步与异步</h3><h3 id="同步："><a href="#同步：" class="headerlink" title="同步："></a>同步：</h3><ul>
+<h3 id="20-同步与异步"><a href="#20-同步与异步" class="headerlink" title="20.同步与异步"></a>20.同步与异步</h3><h4 id="同步："><a href="#同步：" class="headerlink" title="同步："></a>同步：</h4><ul>
 <li>同步的定义：是指一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么，这个进程将会一直等待下去，直到收到返回信息才继续执行下去。</li>
 <li>特点：</li>
 </ul>
@@ -823,7 +823,7 @@
 <li>同步是阻塞模式；</li>
 <li>同步是按顺序执行，执行完一个再执行下一个，需要等待，协调运行；</li>
 </ol>
-<h3 id="异步："><a href="#异步：" class="headerlink" title="异步："></a>异步：</h3><ul>
+<h4 id="异步："><a href="#异步：" class="headerlink" title="异步："></a>异步：</h4><ul>
 <li>是指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率。</li>
 <li>特点：</li>
 </ul>
@@ -831,7 +831,7 @@
 <li>异步是非阻塞模式，无需等待；</li>
 <li>异步是彼此独立，在等待某事件的过程中，继续做自己的事，不需要等待这一事件完成后再工作。线程是异步实现的一个方式。</li>
 </ol>
-<h3 id="同步与异步的优缺点："><a href="#同步与异步的优缺点：" class="headerlink" title="同步与异步的优缺点："></a>同步与异步的优缺点：</h3><ul>
+<h4 id="同步与异步的优缺点："><a href="#同步与异步的优缺点：" class="headerlink" title="同步与异步的优缺点："></a>同步与异步的优缺点：</h4><ul>
 <li>同步可以避免出现死锁，读脏数据的发生。一般共享某一资源的时候，如果每个人都有修改权限，同时修改一个文件，有可能使一个读取另一个人已经删除了内容，就会出错，同步就不会出错。但，同步需要等待资源访问结束，浪费时间，效率低。</li>
 <li>异步可以提高效率，但，安全性较低。</li>
 </ul>
