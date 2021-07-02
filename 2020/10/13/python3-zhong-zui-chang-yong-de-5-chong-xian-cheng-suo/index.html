@@ -1,0 +1,2046 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Python3中最常用的5种线程锁, HTML,CSS,JavaScript,JQuery,React,Vue.js等">
+    <meta name="description" content="西安交通大学 | 电信学部 | 软件工程">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Python3中最常用的5种线程锁 | 不吃香菜的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="不吃香菜的博客" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">不吃香菜的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/navigate" class="waves-effect waves-light">
+      
+      <i class="fa-fw fa fa-box" style="zoom: 0.6;"></i>
+      
+      <span>工具箱</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">不吃香菜的博客</div>
+        <div class="logo-desc">
+            
+            西安交通大学 | 电信学部 | 软件工程
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/navigate" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa-fw fa fa-box"></i>
+			
+			工具箱
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ZNingJ/ZNingJ.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ZNingJ/ZNingJ.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Python3中最常用的5种线程锁</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-13
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-02
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    20 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Python3中最常用的5种线程锁"><a href="#Python3中最常用的5种线程锁" class="headerlink" title="Python3中最常用的5种线程锁"></a>Python3中最常用的5种线程锁</h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本章节将继续围绕threading模块讲解，基本上是纯理论偏多。</p>
+<p>对于日常开发者来讲很少会使用到本章节的内容，但是对框架作者等是必备知识，同时也是高频的面试常见问题。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.6/library/threading.html">官方文档</a></p>
+<h1 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h1><p>线程安全是多线程或多进程编程中的一个概念，在拥有共享数据的多条线程并行执行的程序中，线程安全的代码会通过同步机制保证各个线程都可以正常且正确的执行，不会出现数据污染等意外情况。</p>
+<p>线程安全的问题最主要还是由线程切换导致的，比如一个房间（进程）中有10颗糖（资源），除此之外还有3个小人（1个主线程、2个子线程），当小人A吃了3颗糖后被系统强制进行休息时他认为还剩下7颗糖，而当小人B工作后又吃掉了3颗糖，那么当小人A重新上岗时会认为糖还剩下7颗，但是实际上只有4颗了。</p>
+<p>上述例子中线程A和线程B的数据不同步，这就是线程安全问题，它可能导致非常严重的意外情况发生，我们按下面这个示例来进行说明。</p>
+<p>下面有一个数值num初始值为0，我们开启2条线程：</p>
+<ul>
+<li>线程1对num进行一千万次+1的操作</li>
+<li>线程2对num进行一千万次-1的操作</li>
+</ul>
+<p>结果可能会令人咋舌，num最后并不是我们所想象的结果0：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+num = 0
+
+
+def add():
+    global num
+    for i in range(10_000_000):
+        num += 1
+
+
+def sub():
+    global num
+    for i in range(10_000_000):
+        num -= 1
+
+
+if __name__ == "__main__":
+    subThread01 = threading.Thread(target=add)
+    subThread02 = threading.Thread(target=sub)
+
+    subThread01.start()
+    subThread02.start()
+
+    subThread01.join()
+    subThread02.join()
+
+    print("num result : %s" % num)
+
+# 结果三次采集
+# num result : 669214
+# num result : -1849179
+# num result : -525674<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面这就是一个非常好的案例，想要解决这个问题就必须通过锁来保障线程切换的时机。</p>
+<p>需要我们值得留意的是，在Python基本数据类型中list、tuple、dict本身就是属于线程安全的，所以如果有多个线程对这3种容器做操作时，我们不必考虑线程安全问题。</p>
+<h1 id="锁的作用"><a href="#锁的作用" class="headerlink" title="锁的作用"></a>锁的作用</h1><p>锁是Python提供给我们能够自行操控线程切换的一种手段，使用锁可以让线程的切换变的有序。</p>
+<p>一旦线程的切换变的有序后，各个线程之间对数据的访问、修改就变的可控，所以若要保证线程安全，就必须使用锁。</p>
+<p>threading模块中提供了5种最常见的锁，下面是按照功能进行划分：</p>
+<ul>
+<li>同步锁：lock（一次只能放行一个）</li>
+<li>递归锁：rlock（一次只能放行一个）</li>
+<li>条件锁：condition（一次可以放行任意个）</li>
+<li>事件锁：event（一次全部放行）</li>
+<li>信号量锁：semaphore（一次可以放行特定个）</li>
+</ul>
+<h1 id="Lock-同步锁"><a href="#Lock-同步锁" class="headerlink" title="Lock() 同步锁"></a>Lock() 同步锁</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>Lock锁的称呼有很多，如：</p>
+<ul>
+<li>同步锁</li>
+<li>互斥锁</li>
+</ul>
+<p>它们是什么意思呢？如下所示：</p>
+<ol>
+<li>互斥指的是某一资源同一时刻仅能有一个访问者对其进行访问，具有唯一性和排他性，但是互斥无法限制访问者对资源的访问顺序，即访问是无序的</li>
+<li>同步是指在互斥的基础上（大多数情况），通过其他机制实现访问者对资源的有序访问</li>
+<li>同步其实已经实现了互斥，是互斥的一种更为复杂的实现，因为它在互斥的基础上实现了有序访问的特点</li>
+</ol>
+<p>下面是threading模块与同步锁提供的相关方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>threading.Lock()</td>
+<td>返回一个同步锁对象</td>
+</tr>
+<tr>
+<td>lockObject.acquire(blocking=True, timeout=1)</td>
+<td>上锁，当一个线程在执行被上锁代码块时，将不允许切换到其他线程运行，默认锁失效时间为1秒</td>
+</tr>
+<tr>
+<td>lockObject.release()</td>
+<td>解锁，当一个线程在执行未被上锁代码块时，将允许系统根据策略自行切换到其他线程中运行</td>
+</tr>
+<tr>
+<td>lockObject.locaked()</td>
+<td>判断该锁对象是否处于上锁状态，返回一个布尔值</td>
+</tr>
+</tbody></table>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>同步锁一次只能放行一个线程，一个被加锁的线程在运行时不会将执行权交出去，只有当该线程被解锁时才会将执行权通过系统调度交由其他线程。</p>
+<p>如下所示，使用同步锁解决最上面的问题：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+num = 0
+
+
+def add():
+    lock.acquire()
+    global num
+    for i in range(10_000_000):
+        num += 1
+    lock.release()
+
+
+def sub():
+    lock.acquire()
+    global num
+    for i in range(10_000_000):
+        num -= 1
+    lock.release()
+
+if __name__ == "__main__":
+    lock = threading.Lock()
+
+    subThread01 = threading.Thread(target=add)
+    subThread02 = threading.Thread(target=sub)
+
+    subThread01.start()
+    subThread02.start()
+
+    subThread01.join()
+    subThread02.join()
+
+    print("num result : %s" % num)
+
+# 结果三次采集
+# num result : 0
+# num result : 0
+# num result : 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样这个代码就完全变成了串行的状态，对于这种计算密集型I/O业务来说，还不如直接使用串行化单线程执行来得快，所以这个例子仅作为一个示例，不能概述锁真正的用途。</p>
+<h2 id="死锁现象"><a href="#死锁现象" class="headerlink" title="死锁现象"></a>死锁现象</h2><p>对于同步锁来说，一次acquire()必须对应一次release()，不能出现连续重复使用多次acquire()后再重复使用多次release()的操作，这样会引起死锁造成程序的阻塞，完全不动了，如下所示：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+num = 0
+
+
+def add():
+    lock.acquire()  # 上锁
+    lock.acquire()  # 死锁
+    # 不执行
+    global num
+    for i in range(10_000_000):
+        num += 1
+    lock.release()
+    lock.release()
+
+
+def sub():
+    lock.acquire()  # 上锁
+    lock.acquire()  # 死锁
+    # 不执行
+    global num
+    for i in range(10_000_000):
+        num -= 1
+    lock.release()
+    lock.release()
+
+
+if __name__ == "__main__":
+    lock = threading.Lock()
+
+    subThread01 = threading.Thread(target=add)
+    subThread02 = threading.Thread(target=sub)
+
+    subThread01.start()
+    subThread02.start()
+
+    subThread01.join()
+    subThread02.join()
+
+    print("num result : %s" % num)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="with语句"><a href="#with语句" class="headerlink" title="with语句"></a>with语句</h2><p>由于threading.Lock()对象中实现了__enter__()与__exit__()方法，故我们可以使用with语句进行上下文管理形式的加锁解锁操作：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+num = 0
+
+
+def add():
+    with lock:
+        # 自动加锁
+        global num
+        for i in range(10_000_000):
+            num += 1
+        # 自动解锁
+
+
+def sub():
+    with lock:
+        # 自动加锁
+        global num
+        for i in range(10_000_000):
+            num -= 1
+        # 自动解锁
+
+
+if __name__ == "__main__":
+    lock = threading.Lock()
+
+    subThread01 = threading.Thread(target=add)
+    subThread02 = threading.Thread(target=sub)
+
+    subThread01.start()
+    subThread02.start()
+
+    subThread01.join()
+    subThread02.join()
+
+    print("num result : %s" % num)
+    
+# 结果三次采集
+# num result : 0
+# num result : 0
+# num result : 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="RLock-递归锁"><a href="#RLock-递归锁" class="headerlink" title="RLock() 递归锁"></a>RLock() 递归锁</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>递归锁是同步锁的一个升级版本，在同步锁的基础上可以做到连续重复使用多次acquire()后再重复使用多次release()的操作，但是一定要注意加锁次数和解锁次数必须一致，否则也将引发死锁现象。</p>
+<p>下面是threading模块与递归锁提供的相关方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>threading.RLock()</td>
+<td>返回一个递归锁对象</td>
+</tr>
+<tr>
+<td>lockObject.acquire(blocking=True, timeout=1)</td>
+<td>上锁，当一个线程在执行被上锁代码块时，将不允许切换到其他线程运行，默认锁失效时间为1秒</td>
+</tr>
+<tr>
+<td>lockObject.release()</td>
+<td>解锁，当一个线程在执行未被上锁代码块时，将允许系统根据策略自行切换到其他线程中运行</td>
+</tr>
+<tr>
+<td>lockObject.locaked()</td>
+<td>判断该锁对象是否处于上锁状态，返回一个布尔值</td>
+</tr>
+</tbody></table>
+<h2 id="使用方式-1"><a href="#使用方式-1" class="headerlink" title="使用方式"></a>使用方式</h2><p>以下是递归锁的简单使用，下面这段操作如果使用同步锁则会发生死锁现象，但是递归锁不会：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+num = 0
+
+
+def add():
+    lock.acquire()
+    lock.acquire()
+    global num
+    for i in range(10_000_000):
+        num += 1
+    lock.release()
+    lock.release()
+
+
+def sub():
+    lock.acquire()
+    lock.acquire()
+    global num
+    for i in range(10_000_000):
+        num -= 1
+    lock.release()
+    lock.release()
+
+
+if __name__ == "__main__":
+    lock = threading.RLock()
+
+    subThread01 = threading.Thread(target=add)
+    subThread02 = threading.Thread(target=sub)
+
+    subThread01.start()
+    subThread02.start()
+
+    subThread01.join()
+    subThread02.join()
+
+    print("num result : %s" % num)
+
+# 结果三次采集
+# num result : 0
+# num result : 0
+# num result : 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="with语句-1"><a href="#with语句-1" class="headerlink" title="with语句"></a>with语句</h2><p>由于threading.RLock()对象中实现了__enter__()与__exit__()方法，故我们可以使用with语句进行上下文管理形式的加锁解锁操作：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+num = 0
+
+
+def add():
+    with lock:
+        # 自动加锁
+        global num
+        for i in range(10_000_000):
+            num += 1
+        # 自动解锁
+
+
+def sub():
+    with lock:
+        # 自动加锁
+        global num
+        for i in range(10_000_000):
+            num -= 1
+        # 自动解锁
+
+
+if __name__ == "__main__":
+    lock = threading.RLock()
+
+    subThread01 = threading.Thread(target=add)
+    subThread02 = threading.Thread(target=sub)
+
+    subThread01.start()
+    subThread02.start()
+
+    subThread01.join()
+    subThread02.join()
+
+    print("num result : %s" % num)
+
+# 结果三次采集
+# num result : 0
+# num result : 0
+# num result : 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="Condition-条件锁"><a href="#Condition-条件锁" class="headerlink" title="Condition() 条件锁"></a>Condition() 条件锁</h1><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>条件锁是在递归锁的基础上增加了能够暂停线程运行的功能。并且我们可以使用wait()与notify()来控制线程执行的个数。</p>
+<p>注意：条件锁可以自由设定一次放行几个线程。</p>
+<p>下面是threading模块与条件锁提供的相关方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>threading.Condition()</td>
+<td>返回一个条件锁对象</td>
+</tr>
+<tr>
+<td>lockObject.acquire(blocking=True, timeout=1)</td>
+<td>上锁，当一个线程在执行被上锁代码块时，将不允许切换到其他线程运行，默认锁失效时间为1秒</td>
+</tr>
+<tr>
+<td>lockObject.release()</td>
+<td>解锁，当一个线程在执行未被上锁代码块时，将允许系统根据策略自行切换到其他线程中运行</td>
+</tr>
+<tr>
+<td>lockObject.wait(timeout=None)</td>
+<td>将当前线程设置为“等待”状态，只有该线程接到“通知”或者超时时间到期之后才会继续运行，在“等待”状态下的线程将允许系统根据策略自行切换到其他线程中运行</td>
+</tr>
+<tr>
+<td>lockObject.wait_for(predicate, timeout=None)</td>
+<td>将当前线程设置为“等待”状态，只有该线程的predicate返回一个True或者超时时间到期之后才会继续运行，在“等待”状态下的线程将允许系统根据策略自行切换到其他线程中运行。注意：predicate参数应当传入一个可调用对象，且返回结果为bool类型</td>
+</tr>
+<tr>
+<td>lockObject.notify(n=1)</td>
+<td>通知一个当前状态为“等待”的线程继续运行，也可以通过参数n通知多个</td>
+</tr>
+<tr>
+<td>lockObject.notify_all()</td>
+<td>通知所有当前状态为“等待”的线程继续运行</td>
+</tr>
+</tbody></table>
+<h2 id="使用方式-2"><a href="#使用方式-2" class="headerlink" title="使用方式"></a>使用方式</h2><p>下面这个案例会启动10个子线程，并且会立即将10个子线程设置为等待状态。</p>
+<p>然后我们可以发送一个或者多个通知，来恢复被等待的子线程继续运行：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+currentRunThreadNumber = 0
+maxSubThreadNumber = 10
+
+
+def task():
+    global currentRunThreadNumber
+    thName = threading.currentThread().name
+
+    condLock.acquire()  # 上锁
+    print("start and wait run thread : %s" % thName)
+
+    condLock.wait()  # 暂停线程运行、等待唤醒
+    currentRunThreadNumber += 1
+    print("carry on run thread : %s" % thName)
+
+    condLock.release()  # 解锁
+
+
+if __name__ == "__main__":
+    condLock = threading.Condition()
+
+    for i in range(maxSubThreadNumber):
+        subThreadIns = threading.Thread(target=task)
+        subThreadIns.start()
+
+    while currentRunThreadNumber &lt; maxSubThreadNumber:
+        notifyNumber = int(
+            input("Please enter the number of threads that need to be notified to run："))
+
+        condLock.acquire()
+        condLock.notify(notifyNumber)  # 放行
+        condLock.release()
+
+    print("main thread run end")
+    
+# 先启动10个子线程，然后这些子线程会全部变为等待状态
+# start and wait run thread : Thread-1
+# start and wait run thread : Thread-2
+# start and wait run thread : Thread-3
+# start and wait run thread : Thread-4
+# start and wait run thread : Thread-5
+# start and wait run thread : Thread-6
+# start and wait run thread : Thread-7
+# start and wait run thread : Thread-8
+# start and wait run thread : Thread-9
+# start and wait run thread : Thread-10
+
+# 批量发送通知，放行特定数量的子线程继续运行
+# Please enter the number of threads that need to be notified to run：5  # 放行5个
+# carry on run thread : Thread-4
+# carry on run thread : Thread-3
+# carry on run thread : Thread-1
+# carry on run thread : Thread-2
+# carry on run thread : Thread-5
+
+# Please enter the number of threads that need to be notified to run：5  # 放行5个
+# carry on run thread : Thread-8
+# carry on run thread : Thread-10
+# carry on run thread : Thread-6
+# carry on run thread : Thread-9
+# carry on run thread : Thread-7
+
+# Please enter the number of threads that need to be notified to run：1
+# main thread run end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="with语句-2"><a href="#with语句-2" class="headerlink" title="with语句"></a>with语句</h2><p>由于threading.Condition()对象中实现了__enter__()与__exit__()方法，故我们可以使用with语句进行上下文管理形式的加锁解锁操作：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+currentRunThreadNumber = 0
+maxSubThreadNumber = 10
+
+
+def task():
+    global currentRunThreadNumber
+    thName = threading.currentThread().name
+
+    with condLock:
+        print("start and wait run thread : %s" % thName)
+        condLock.wait()  # 暂停线程运行、等待唤醒
+        currentRunThreadNumber += 1
+        print("carry on run thread : %s" % thName)
+
+
+if __name__ == "__main__":
+    condLock = threading.Condition()
+
+    for i in range(maxSubThreadNumber):
+        subThreadIns = threading.Thread(target=task)
+        subThreadIns.start()
+
+    while currentRunThreadNumber &lt; maxSubThreadNumber:
+        notifyNumber = int(
+            input("Please enter the number of threads that need to be notified to run："))
+
+        with condLock:
+            condLock.notify(notifyNumber)  # 放行
+
+    print("main thread run end")<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="Event-事件锁"><a href="#Event-事件锁" class="headerlink" title="Event() 事件锁"></a>Event() 事件锁</h1><h2 id="基本介绍-3"><a href="#基本介绍-3" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>事件锁是基于条件锁来做的，它与条件锁的区别在于一次只能放行全部，不能放行任意个数量的子线程继续运行。</p>
+<p>我们可以将事件锁看为红绿灯，当红灯时所有子线程都暂停运行，并进入“等待”状态，当绿灯时所有子线程都恢复“运行”。</p>
+<p>下面是threading模块与事件锁提供的相关方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>threading.Event()</td>
+<td>返回一个事件锁对象</td>
+</tr>
+<tr>
+<td>lockObject.clear()</td>
+<td>将事件锁设为红灯状态，即所有线程暂停运行</td>
+</tr>
+<tr>
+<td>lockObject.is_set()</td>
+<td>用来判断当前事件锁状态，红灯为False，绿灯为True</td>
+</tr>
+<tr>
+<td>lockObject.set()</td>
+<td>将事件锁设为绿灯状态，即所有线程恢复运行</td>
+</tr>
+<tr>
+<td>lockObject.wait(timeout=None)</td>
+<td>将当前线程设置为“等待”状态，只有该线程接到“绿灯通知”或者超时时间到期之后才会继续运行，在“等待”状态下的线程将允许系统根据策略自行切换到其他线程中运行</td>
+</tr>
+</tbody></table>
+<h2 id="使用方式-3"><a href="#使用方式-3" class="headerlink" title="使用方式"></a>使用方式</h2><p>事件锁不能利用with语句来进行使用，只能按照常规方式。</p>
+<p>如下所示，我们来模拟线程和红绿灯的操作，红灯停，绿灯行：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+maxSubThreadNumber = 3
+
+
+def task():
+    thName = threading.currentThread().name
+    print("start and wait run thread : %s" % thName)
+    eventLock.wait()  # 暂停运行，等待绿灯
+    print("green light, %s carry on run" % thName)
+    print("red light, %s stop run" % thName)
+    eventLock.wait()  # 暂停运行，等待绿灯
+    print("green light, %s carry on run" % thName)
+    print("sub thread %s run end" % thName)
+
+
+if __name__ == "__main__":
+
+    eventLock = threading.Event()
+
+    for i in range(maxSubThreadNumber):
+        subThreadIns = threading.Thread(target=task)
+        subThreadIns.start()
+
+    eventLock.set()  # 设置为绿灯
+    eventLock.clear()  # 设置为红灯
+    eventLock.set()  # 设置为绿灯
+
+# start and wait run thread : Thread-1
+# start and wait run thread : Thread-2
+# start and wait run thread : Thread-3
+
+# green light, Thread-1 carry on run
+# red light, Thread-1 stop run
+# green light, Thread-1 carry on run
+# sub thread Thread-1 run end
+
+# green light, Thread-3 carry on run
+# red light, Thread-3 stop run
+# green light, Thread-3 carry on run
+# sub thread Thread-3 run end
+
+# green light, Thread-2 carry on run
+# red light, Thread-2 stop run
+# green light, Thread-2 carry on run
+# sub thread Thread-2 run end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="Semaphore-信号量锁"><a href="#Semaphore-信号量锁" class="headerlink" title="Semaphore() 信号量锁"></a>Semaphore() 信号量锁</h1><h2 id="基本介绍-4"><a href="#基本介绍-4" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>信号量锁也是根据条件锁来做的，它与条件锁和事件锁的区别如下：</p>
+<ul>
+<li>条件锁：一次可以放行任意个处于“等待”状态的线程</li>
+<li>事件锁：一次可以放行全部的处于“等待”状态的线程</li>
+<li>信号量锁：通过规定，成批的放行特定个处于“上锁”状态的线程</li>
+</ul>
+<p>下面是threading模块与信号量锁提供的相关方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>threading.Semaphore()</td>
+<td>返回一个信号量锁对象</td>
+</tr>
+<tr>
+<td>lockObject.acquire(blocking=True, timeout=1)</td>
+<td>上锁，当一个线程在执行被上锁代码块时，将不允许切换到其他线程运行，默认锁失效时间为1秒</td>
+</tr>
+<tr>
+<td>lockObject.release()</td>
+<td>解锁，当一个线程在执行未被上锁代码块时，将允许系统根据策略自行切换到其他线程中运行</td>
+</tr>
+</tbody></table>
+<h2 id="使用方式-4"><a href="#使用方式-4" class="headerlink" title="使用方式"></a>使用方式</h2><p>以下是使用示例，你可以将它当做一段限宽的路段，每次只能放行相同数量的线程：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+import time
+
+maxSubThreadNumber = 6
+
+
+def task():
+    thName = threading.currentThread().name
+    semaLock.acquire()
+    print("run sub thread %s" % thName)
+    time.sleep(3)
+    semaLock.release()
+
+
+if __name__ == "__main__":
+    # 每次只能放行2个
+    semaLock = threading.Semaphore(2)
+
+    for i in range(maxSubThreadNumber):
+        subThreadIns = threading.Thread(target=task)
+        subThreadIns.start()
+
+
+# run sub thread Thread-1
+# run sub thread Thread-2
+
+# run sub thread Thread-3
+# run sub thread Thread-4
+
+# run sub thread Thread-6
+# run sub thread Thread-5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="with语句-3"><a href="#with语句-3" class="headerlink" title="with语句"></a>with语句</h2><p>由于threading.Semaphore()对象中实现了__enter__()与__exit__()方法，故我们可以使用with语句进行上下文管理形式的加锁解锁操作：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+import time
+
+maxSubThreadNumber = 6
+
+
+def task():
+    thName = threading.currentThread().name
+    with semaLock:
+        print("run sub thread %s" % thName)
+        time.sleep(3)
+
+
+if __name__ == "__main__":
+
+    semaLock = threading.Semaphore(2)
+
+    for i in range(maxSubThreadNumber):
+        subThreadIns = threading.Thread(target=task)
+        subThreadIns.start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="锁关系浅析"><a href="#锁关系浅析" class="headerlink" title="锁关系浅析"></a>锁关系浅析</h1><p>上面5种锁可以说都是基于同步锁来做的，这些你都可以从源码中找到答案。</p>
+<p>首先来看RLock递归锁，递归锁的实现非常简单，它的内部会维护着一个计数器，当计数器不为0的时候该线程不能被I/O操作和时间轮询机制切换。但是当计数器为0的时候便不会如此了：</p>
+<pre class="line-numbers language-none"><code class="language-none">def __init__(self):
+    self._block = _allocate_lock()
+    self._owner = None
+    self._count = 0  # 计数器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>而Condition条件锁的内部其实是有两把锁的，一把底层锁（同步锁）一把高级锁(递归锁)。</p>
+<p>低层锁的解锁方式有两种，使用wait()方法会暂时解开底层锁同时加上一把高级锁，只有当接收到别的线程里的notfiy()后才会解开高级锁和重新上锁低层锁，也就是说条件锁底层是根据同步锁和递归锁的不断切换来进行实现的：</p>
+<pre class="line-numbers language-none"><code class="language-none">def __init__(self, lock=None):
+    if lock is None:
+        lock = RLock()  # 可以看到条件锁的内部是基于递归锁，而递归锁又是基于同步锁来做的
+    self._lock = lock
+
+    self.acquire = lock.acquire
+    self.release = lock.release
+    try:
+        self._release_save = lock._release_save
+    except AttributeError:
+        pass
+    try:
+        self._acquire_restore = lock._acquire_restore
+    except AttributeError:
+        pass
+    try:
+        self._is_owned = lock._is_owned
+    except AttributeError:
+        pass
+    self._waiters = _deque()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Event事件锁内部是基于条件锁来做的：</p>
+<pre class="line-numbers language-none"><code class="language-none">class Event:
+
+    def __init__(self):
+        self._cond = Condition(Lock())  # 实例化出了一个条件锁。
+        self._flag = False
+
+    def _reset_internal_locks(self):
+        # private!  called by Thread._reset_internal_locks by _after_fork()
+        self._cond.__init__(Lock())
+
+    def is_set(self):
+        """Return true if and only if the internal flag is true."""
+        return self._flag
+
+    isSet = is_set<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Semaphore信号量锁内部也是基于条件锁来做的：</p>
+<pre class="line-numbers language-none"><code class="language-none">class Semaphore:
+
+    def __init__(self, value=1):
+        if value &lt; 0:
+            raise ValueError("semaphore initial value must be &gt;= 0")
+        self._cond = Condition(Lock()) # 可以看到，这里是实例化出了一个条件锁
+        self._value = value<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="基本练习题"><a href="#基本练习题" class="headerlink" title="基本练习题"></a>基本练习题</h1><h2 id="条件锁的应用"><a href="#条件锁的应用" class="headerlink" title="条件锁的应用"></a>条件锁的应用</h2><p>需求：一个空列表，两个线程轮番往里面加值（一个加偶数，一个加奇数），最终让该列表中的值为 1 - 100 ，且是有序排列的。</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+lst = []
+
+
+def even():
+    """加偶数"""
+    with condLock:
+        for i in range(2, 101, 2):
+            # 判断当前列表的长度处于2是否能处尽
+            # 如果能处尽则代表需要添加奇数
+            # 否则就添加偶数
+            if len(lst) % 2 != 0:
+                # 添偶数
+                lst.append(i)      # 先添加值
+                condLock.notify()  # 告诉另一个线程，你可以加奇数了，但是这里不会立即交出执行权
+                condLock.wait()    # 交出执行权，并等待另一个线程通知加偶数
+            else:
+                # 添奇数
+                condLock.wait()  # 交出执行权，等待另一个线程通知加偶数
+                lst.append(i)    
+                condLock.notify()
+        condLock.notify()
+
+
+def odd():
+    """加奇数"""
+    with condLock:
+        for i in range(1, 101, 2):
+            if len(lst) % 2 == 0:
+                lst.append(i)
+                condLock.notify()
+                condLock.wait()
+        condLock.notify()
+
+
+if __name__ == "__main__":
+    condLock = threading.Condition()
+
+    addEvenTask = threading.Thread(target=even)
+    addOddTask = threading.Thread(target=odd)
+
+    addEvenTask.start()
+    addOddTask.start()
+
+    addEvenTask.join()
+    addOddTask.join()
+
+    print(lst)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="事件锁的应用"><a href="#事件锁的应用" class="headerlink" title="事件锁的应用"></a>事件锁的应用</h2><p>有2个任务线程来扮演李白和杜甫，如何让他们一人一句进行对答？文本如下：</p>
+<blockquote>
+<p>杜甫：老李啊，来喝酒！</p>
+<p>李白：老杜啊，不喝了我喝不下了！</p>
+<p>杜甫：老李啊，再来一壶？</p>
+<p>杜甫：…老李？</p>
+<p>李白：呼呼呼…睡着了..</p>
+</blockquote>
+<p>代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">import threading
+
+
+def libai():
+    event.wait()  
+    print("李白：老杜啊，不喝了我喝不下了！")
+    event.set()
+    event.clear()
+    event.wait()
+    print("李白：呼呼呼...睡着了..")
+
+def dufu():
+    print("杜甫：老李啊，来喝酒！")
+    event.set()  
+    event.clear()
+    event.wait()
+    print("杜甫：老李啊，再来一壶？")
+    print("杜甫：...老李？")
+    event.set()
+
+
+if __name__ == '__main__':
+
+    event = threading.Event()
+
+    t1 = threading.Thread(target=libai)
+    t2 = threading.Thread(target=dufu)
+
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">不吃香菜</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zningj.github.io/2020/10/13/python3-zhong-zui-chang-yong-de-5-chong-xian-cheng-suo/">https://zningj.github.io/2020/10/13/python3-zhong-zui-chang-yong-de-5-chong-xian-cheng-suo/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">不吃香菜</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/11/22/django-zhong-restful-kuang-jia-de-shi-yong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Python django中restful框架的使用">
+                        
+                        <span class="card-title">Python django中restful框架的使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/Django/">
+                        <span class="chip bg-color">Django</span>
+                    </a>
+                    
+                    <a href="/tags/restful/">
+                        <span class="chip bg-color">restful</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/02/java-ji-he-kuang-jia-zhi-shi-zheng-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Java集合框架知识整理">
+                        
+                        <span class="card-title">Java集合框架知识整理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            不吃香菜
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+			<span id="sitetime"></span>
+            
+                <span id="year">2020-2021</span>
+            
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">不吃香菜</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+			
+			<script> $(document).ready(function () { var int = setInterval(fixCount, 50); // 50ms周期检测函数 var pvcountOffset = 80000; // 初始化首次数据 var uvcountOffset = 20000; function fixCount() { if (document.getElementById("busuanzi_container_site_pv").style.display != "none") { $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset); clearInterval(int); } if ($("#busuanzi_container_site_pv").css("display") != "none") { $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 clearInterval(int); // 停止检测 } } }); </script>
+
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ZNingJ" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:542121173@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=542121173" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 542121173" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
