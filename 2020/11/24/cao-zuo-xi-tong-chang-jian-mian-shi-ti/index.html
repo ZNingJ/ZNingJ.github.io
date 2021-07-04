@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="不吃香菜的博客" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="不吃香菜的博客" type="application/atom+xml">
 </head>
 
 
@@ -496,7 +496,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-29
+                    2021-07-04
                 </div>
                 
 
@@ -534,7 +534,7 @@
 <li>执行：进程已经获得CPU，程序正在执行状态。</li>
 <li>阻塞：正在执行的进程由于发生某事件（如I/O请求、申请缓冲区失败等）暂时无法继续执行的状态。</li>
 </ul>
-<p>​     <img src="https://images2018.cnblogs.com/blog/1118296/201805/1118296-20180522204056722-921601285.jpg" alt="img"></p>
+<p>​    <img src="https://cdn.jsdelivr.net/gh/ZNingJ/cdn/img/1118296-20180522204056722-921601285.jpg"></p>
 <h3 id="2-进程同步"><a href="#2-进程同步" class="headerlink" title="2.进程同步"></a>2.进程同步</h3><p>进程同步的主要任务：是对多个相关进程在执行次序上进行协调，以使并发执行的诸进程之间能有效地共享资源和相互合作，从而使程序的执行具有可再现性。</p>
 <p>　　同步机制遵循的原则：</p>
 <p>　　（1）空闲让进；</p>
@@ -668,7 +668,7 @@
 <li><strong>最通用的调度算法，多数OS都使用该方法或其变形，如UNIX、Windows等。</strong></li>
 </ul>
 <p><strong>多级反馈队列调度算法描述:</strong></p>
-<p><img src="https://segmentfault.com/img/bVUAMV?w=300&amp;h=211" alt="clipboard.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ZNingJ/cdn/img/bVUAMV"></p>
 <ul>
 <li>进程在进入待调度的队列等待时，<strong>首先进入优先级最高的Q1等待。</strong></li>
 <li><strong>首先调度优先级高的队列中的进程。若高优先级中队列中已没有调度的进程，则调度次优先级队列中的进程。</strong>例如：Q1,Q2,Q3三个队列，只有在Q1中没有进程等待时才去调度Q2，同理，只有Q1,Q2都为空时才会去调度Q3。</li>
@@ -720,7 +720,7 @@
 <ul>
 <li>静态库是一个外部函数与变量的集合体。静态库的文件内容，通常包含一堆程序员自定的变量与函数，其内容不像动态链接库那么复杂，在编译期间由编译器与链接器将它集成至应用程序内，并制作成目标文件以及可以独立运作的可执行文件。而这个可执行文件与编译可执行文件的程序，都是一种程序的静态创建（static build）。</li>
 </ul>
-<p><img src="https://images2018.cnblogs.com/blog/1118296/201809/1118296-20180902162023684-811662571.jpg" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ZNingJ/cdn/img/1118296-20180902162023684-811662571.jpg"></p>
 <p><strong>动态库</strong></p>
 <ul>
 <li>静态库很方便，但是如果我们只是想用库中的某一个函数，却仍然得把所有的内容都链接进去。一个更现代的方法则是使用共享库，避免了在文件中静态库的大量重复。</li>
@@ -728,7 +728,7 @@
 <li>动态链接也可以在程序开始执行的时候完成(run-time linking)，在 Linux 中使用 dlopen()接口来完成（会使用函数指针），通常用于分布式软件，高性能服务器上。而且共享库也可以在多个进程间共享。</li>
 <li><strong>链接使得我们可以用多个对象文件构造我们的程序。可以在程序的不同阶段进行（编译、载入、运行期间均可），理解链接可以帮助我们避免遇到奇怪的错误</strong>。</li>
 </ul>
-<p><img src="https://images2018.cnblogs.com/blog/1118296/201809/1118296-20180902162103595-917107800.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ZNingJ/cdn/img/1118296-20180902162103595-917107800.png"></p>
 <p>区别：</p>
 <ol>
 <li>使用静态库的时候，静态链接库要参与编译，在生成执行文件之前的链接过程中，要将静态链接库的全部指令直接链接入可执行文件中。而动态库提供了一种方法，使进程可以调用不属于其可执行代码的函数。函数的可执行代码位于一个.dll文件中，该dll包含一个或多个已被编译，链接并与使用它们的进程分开储存的函数。</li>
@@ -866,7 +866,7 @@
 <p>一个进程中的所有线程共享该进程的地址空间，但它们有各自独立的（/私有的）栈(stack)，Windows线程的缺省堆栈大小为1M。堆(heap)的分配与栈有所不同，一般是一个进程有一个C运行时堆，这个堆为本进程中所有线程共享，windows进程还有所谓进程默认堆，用户也可以创建自己的堆。<br>用操作系统术语，线程切换的时候实际上切换的是一个可以称之为线程控制块的结构（TCB）,里面保存所有将来用于恢复线程环境必须的信息，包括所有必须保存的寄存器集，线程的状态等。</p>
 <p><strong>堆：</strong>　是大家共有的空间，分全局堆和局部堆。全局堆就是所有没有分配的空间，局部堆就是用户分配的空间。堆在操作系统对进程初始化的时候分配，运行过程中也可以向系统要额外的堆，但是记得用完了要还给操作系统，要不然就是内存泄漏。</p>
 <p><strong>栈：</strong>是个线程独有的，保存其运行状态和局部自动变量的。栈在线程开始的时候初始化，每个线程的栈互相独立，因此，栈是　thread safe的。操作系统在切换线程的时候会自动的切换栈，就是切换　ＳＳ／ＥＳＰ寄存器。栈空间不需要在高级语言里面显式的分配和释放。</p>
-<p><img src="https://images2018.cnblogs.com/blog/1118296/201809/1118296-20180913105925533-936908194.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ZNingJ/cdn/img/1118296-20180913105925533-936908194.png"></p>
 
                 
             </div>
