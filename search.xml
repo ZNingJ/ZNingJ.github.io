@@ -408,6 +408,33 @@
     </entry>
     
     
+    
+    <entry>
+      <title>国内加速访问 GitHub</title>
+      <link href="/2020/07/04/guo-nei-jia-su-fang-wen-github/"/>
+      <url>/2020/07/04/guo-nei-jia-su-fang-wen-github/</url>
+      
+        <content type="html"><![CDATA[<h1 id="国内加速访问-GitHub"><a href="#国内加速访问-GitHub" class="headerlink" title="国内加速访问 GitHub"></a>国内加速访问 GitHub</h1><p>中国访问 GitHub 的速度不忍直视，那就叫一个慢！</p><pre class="line-numbers language-none"><code class="language-none">PLAINTEXTQ: 为什么访问速度会很慢？A: GitHub 在国内访问速度慢的问题原因有很多，但最直接和最主要的原因是 GitHub 的分发加速网络的域名遭到 dns 污染。PLAINTEXTQ: 如何解决 DNS 污染？A: 通过修改 hosts 解决污染问题。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><blockquote><p>不需要科（）学（）上网，也不需要开代理加速器。</p></blockquote><h3 id="一、查询网址对应的-IP-地址"><a href="#一、查询网址对应的-IP-地址" class="headerlink" title="一、查询网址对应的 IP 地址"></a>一、查询网址对应的 IP 地址</h3><p>查询地址：<a href="https://www.ipaddress.com/">https://www.ipaddress.com/</a></p><p>点击下面 <code>域名</code>（domain）自动跳转到 <code>ipaddress.com</code> 查询结果页面：</p><ol><li><a href="https://github.com.ipaddress.com/">github.com</a></li><li><a href="https://github.com.ipaddress.com/assets-cdn.github.com">assets-cdn.github.com</a></li><li><a href="https://fastly.net.ipaddress.com/github.global.ssl.fastly.net">github.global.ssl.fastly.net</a></li></ol><p><a href="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns0.png"><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns0.png" alt="github.com 对应 IP 结果"></a></p><p>github.com 对应 IP 结果</p><p><a href="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns1.png"><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns1.png" alt="assets-cdn.github.com 对应 IP 结果"></a></p><p>assets-cdn.github.com 对应 IP 结果</p><p><a href="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns2.png"><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns2.png" alt="github.global.ssl.fastly.net 对应 IP 结果"></a></p><p>github.global.ssl.fastly.net 对应 IP 结果</p><h3 id="二、修改本地系统-hosts-文件"><a href="#二、修改本地系统-hosts-文件" class="headerlink" title="二、修改本地系统 hosts 文件"></a>二、修改本地系统 hosts 文件</h3><blockquote><p>hosts 文件路径：<code>C:\Windows\System32\drivers\etc\hosts</code></p></blockquote><ol><li>以<strong>管理员</strong>身份打开 <code>CMD</code> 终端，并输入 <code>notepad</code> ，会打开一个记事本。</li></ol><p><a href="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns3.png"><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns3.png" alt="记事本"></a></p><p>记事本</p><ol><li>打开文件，输入 <code>hosts</code> 文件路径，选择所有文件，最后点击 <code>hosts</code> 自动打开该文件。</li></ol><p><a href="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns4.png"><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns4.png" alt="打开 hosts 文件"></a></p><p>打开 hosts 文件</p><ol><li>修改 <code>hosts</code> 文件，将查询到的 IP 和 域名写在 <code>hosts</code> 文件的最后即可</li></ol><pre class="line-numbers language-none"><code class="language-none">PLAINTEXT192.30.253.112    github.com185.199.108.153   assets-cdn.github.com185.199.109.153   assets-cdn.github.com185.199.110.153   assets-cdn.github.com185.199.111.153   assets-cdn.github.com199.232.5.194     github.global.ssl.fastly.net<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><a href="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns5.png"><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns5.png" alt="修改 hosts 文件"></a></p><p>修改 hosts 文件</p><h3 id="三、刷新本地系统-dns-缓存"><a href="#三、刷新本地系统-dns-缓存" class="headerlink" title="三、刷新本地系统 dns 缓存"></a>三、刷新本地系统 dns 缓存</h3><p>用 <code>WIN + R</code> 快捷键打开运行窗口，输入命令：<code>cmd</code> 并回车进入命令行窗口。</p><p>接着输入命令：</p><pre class="line-numbers language-none"><code class="language-none">CMDipconfig /flushdns <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>回车后执行刷新本地 dns 缓存数据即可。</p><p><a href="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns6.png"><img src="https://cdn.jsdelivr.net/gh/Sitoi/cdn/img/GitHub-dns6.png" alt="刷新系统 dns 缓存"></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> GitHub </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GitHub </tag>
+            
+            <tag> DNS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
